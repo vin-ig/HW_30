@@ -38,7 +38,7 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=30)),
                 ('role', models.CharField(max_length=20)),
                 ('age', models.PositiveIntegerField()),
-                ('location', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ads.location')),
+                ('location', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ad.location')),
             ],
         ),
         migrations.CreateModel(
@@ -50,8 +50,8 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(max_length=1000)),
                 ('is_published', models.BooleanField()),
                 ('image', models.ImageField(upload_to='images/')),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ads.user')),
-                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ads.category')),
+                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ad.user')),
+                ('category', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ad.category')),
             ],
         ),
     ]

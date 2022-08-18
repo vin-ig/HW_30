@@ -1,6 +1,6 @@
 [
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 1,
     "fields": {
       "id": 1,
@@ -14,7 +14,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 2,
     "fields": {
       "id": 2,
@@ -28,7 +28,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 3,
     "fields": {
       "id": 3,
@@ -42,7 +42,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 4,
     "fields": {
       "id": 4,
@@ -56,7 +56,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 5,
     "fields": {
       "id": 5,
@@ -70,7 +70,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 6,
     "fields": {
       "id": 6,
@@ -84,7 +84,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 7,
     "fields": {
       "id": 7,
@@ -98,7 +98,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 8,
     "fields": {
       "id": 8,
@@ -112,7 +112,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 9,
     "fields": {
       "id": 9,
@@ -126,7 +126,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 10,
     "fields": {
       "id": 10,
@@ -140,7 +140,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 11,
     "fields": {
       "id": 11,
@@ -154,7 +154,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 12,
     "fields": {
       "id": 12,
@@ -168,7 +168,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 13,
     "fields": {
       "id": 13,
@@ -182,7 +182,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 14,
     "fields": {
       "id": 14,
@@ -196,7 +196,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 15,
     "fields": {
       "id": 15,
@@ -210,7 +210,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 16,
     "fields": {
       "id": 16,
@@ -224,7 +224,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 17,
     "fields": {
       "id": 17,
@@ -238,7 +238,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 18,
     "fields": {
       "id": 18,
@@ -252,7 +252,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 19,
     "fields": {
       "id": 19,
@@ -266,7 +266,7 @@
     }
   },
   {
-    "model": "ads.ad",
+    "model": "ad.ad",
     "pk": 20,
     "fields": {
       "id": 20,

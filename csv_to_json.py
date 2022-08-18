@@ -25,7 +25,7 @@ def csv_to_json(csv_file: str, json_file: str, model: str) -> None:
 		json.dump(fixture, file, ensure_ascii=False, indent=2)
 
 
-csv_to_json(csv_file='datasets/ad.csv', json_file='ads/fixtures/ad.json', model='ads.ad')
-csv_to_json(csv_file='datasets/category.csv', json_file='ads/fixtures/category.json', model='ads.category')
-csv_to_json(csv_file='datasets/location.csv', json_file='ads/fixtures/location.json', model='ads.location')
-csv_to_json(csv_file='datasets/user.csv', json_file='ads/fixtures/user.json', model='ads.user')
+csv_to_json(csv_file='datasets/ad.csv', json_file='fixtures/ad.json', model='ad.ad')
+csv_to_json(csv_file='datasets/category.csv', json_file='fixtures/category.json', model='category.category')
+csv_to_json(csv_file='datasets/location.csv', json_file='fixtures/location.json', model='location.location')
+csv_to_json(csv_file='datasets/user.csv', json_file='fixtures/user.json', model='user.user')
