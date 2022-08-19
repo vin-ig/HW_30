@@ -35,7 +35,7 @@ class AdListView(ListView):
 				'author': ad.author.username,
 				'price': ad.price,
 				'description': ad.description,
-				# 'image': ad.image,
+				'image': ad.image.url if ad.image else None,
 				'is_published': ad.is_published,
 				'category': ad.category.name,
 			})
@@ -56,7 +56,7 @@ class AdDetailView(DetailView):
 			'author': ad.author.username,
 			'price': ad.price,
 			'description': ad.description,
-			# 'image': ad.image,
+			'image': ad.image.url if ad.image else None,
 			'is_published': ad.is_published,
 			'category': ad.category.name,
 		}, safe=False)
@@ -87,7 +87,7 @@ class AdCreateView(CreateView):
 			'author': ad.author.username,
 			'price': ad.price,
 			'description': ad.description,
-			# 'image': ad.image,
+			'image': ad.image.url if ad.image else None,
 			'is_published': ad.is_published,
 			'category': ad.category.name,
 		}, safe=False)
@@ -121,7 +121,30 @@ class AdUpdateView(UpdateView):
 			'author': ad.author.username,
 			'price': ad.price,
 			'description': ad.description,
-			# 'image': ad.image,
+			'image': ad.image.url if ad.image else None,
+			'is_published': ad.is_published,
+			'category': ad.category.name,
+		}, safe=False)
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class AdImageView(UpdateView):
+	model = Ad
+	fields = ['name', 'author', 'price', 'description', 'image', 'is_published', 'category']
+
+	def post(self, request, *args, **kwargs):
+		ad = self.get_object()
+
+		ad.image = request.FILES['image']
+		ad.save()
+
+		return JsonResponse({
+			'id': ad.id,
+			'name': ad.name,
+			'author': ad.author.username,
+			'price': ad.price,
+			'description': ad.description,
+			'image': ad.image.url if ad.image else None,
 			'is_published': ad.is_published,
 			'category': ad.category.name,
 		}, safe=False)
