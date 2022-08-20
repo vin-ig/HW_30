@@ -10,19 +10,13 @@ from category.models import Category
 
 
 @method_decorator(csrf_exempt, name='dispatch')
-class IndexView(View):
-	def get(self, request):
-		return JsonResponse({'status': 'ok'}, status=200)
-
-
-@method_decorator(csrf_exempt, name='dispatch')
 class CategoryListView(ListView):
 	model = Category
 
 	def get(self, request, *args, **kwargs):
 		super().get(request, *args, **kwargs)
 
-		categories = self.object_list
+		categories = self.object_list.order_by('name')
 
 		result = []
 		for category in categories:

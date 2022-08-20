@@ -17,7 +17,7 @@ class UserListView(ListView):
 	def get(self, request, *args, **kwargs):
 		super().get(request, *args, **kwargs)
 
-		users = self.object_list
+		users = self.object_list.order_by('username')
 
 		result = []
 		for user in users:
