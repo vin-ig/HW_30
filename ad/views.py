@@ -1,5 +1,6 @@
 import json
 
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
 from django.views import View
 from django.utils.decorators import method_decorator
@@ -7,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.views.generic import DetailView, UpdateView, ListView, CreateView, DeleteView
 
+from HW_28 import settings
 from ad.models import Ad
 from category.models import Category
 from user.models import User
@@ -25,10 +27,12 @@ class AdListView(ListView):
 	def get(self, request, *args, **kwargs):
 		super().get(request, *args, **kwargs)
 
-		ads = self.object_list
+		paginator = Paginator(self.object_list, settings.TOTAL_ON_PAGE)
+		page_num = request.GET.get('page')
+		page_obj = paginator.get_page(page_num)
 
 		result = []
-		for ad in ads:
+		for ad in page_obj:
 			result.append({
 				'id': ad.id,
 				'name': ad.name,
@@ -39,7 +43,11 @@ class AdListView(ListView):
 				'is_published': ad.is_published,
 				'category': ad.category.name,
 			})
-		return JsonResponse(result, safe=False)
+		return JsonResponse({
+			'items': result,
+			'num_pages': paginator.num_pages,
+			'total': paginator.count,
+		}, safe=False)
 
 
 @method_decorator(csrf_exempt, name='dispatch')
