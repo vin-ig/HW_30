@@ -1,7 +1,19 @@
 from django.db import models
 from django.db.models import CASCADE
 
-from location.models import Location
+
+class Location(models.Model):
+	id = models.AutoField(primary_key=True)
+	name = models.CharField(max_length=50)
+	lat = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+	lng = models.DecimalField(max_digits=9, decimal_places=6, null=True, blank=True)
+
+	class Meta:
+		verbose_name = 'Локация'
+		verbose_name_plural = 'Локации'
+
+	def __str__(self):
+		return self.name
 
 
 class User(models.Model):

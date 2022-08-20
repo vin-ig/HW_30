@@ -38,7 +38,6 @@ INSTALLED_APPS = [
 	'ad',
 	'category',
 	'user',
-	'location',
 ]
 
 MIDDLEWARE = [

@@ -27,7 +27,7 @@ class AdListView(ListView):
 	def get(self, request, *args, **kwargs):
 		super().get(request, *args, **kwargs)
 
-		ads = self.object_list.order_by('-price')
+		ads = self.object_list.select_related('author', 'category').order_by('-price')
 
 		paginator = Paginator(ads, settings.TOTAL_ON_PAGE)
 		page_num = request.GET.get('page')

@@ -2,15 +2,13 @@ import json
 
 from django.core.paginator import Paginator
 from django.db.models import Count
-from django.views import View
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.views.generic import DetailView, UpdateView, ListView, CreateView, DeleteView
 
 from HW_28 import settings
-from location.models import Location
-from user.models import User
+from user.models import User, Location
 
 
 @method_decorator(csrf_exempt, name='dispatch')
@@ -20,7 +18,7 @@ class UserListView(ListView):
 	def get(self, request, *args, **kwargs):
 		super().get(request, *args, **kwargs)
 
-		users = self.object_list.order_by('username')
+		users = self.object_list.select_related('location').order_by('username')
 		users_qs = users.annotate(total_ads=Count('ad'))
 
 		paginator = Paginator(users_qs, settings.TOTAL_ON_PAGE)
