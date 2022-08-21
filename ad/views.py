@@ -88,7 +88,7 @@ class AdCreateView(CreateView):
 			price=data.get('price'),
 			description=data.get('description'),
 			is_published=data.get('is_published'),
-			category=get_object_or_404(Category, pk=data.get('author')),
+			category=get_object_or_404(Category, pk=data.get('category')),
 		)
 
 		return JsonResponse({
