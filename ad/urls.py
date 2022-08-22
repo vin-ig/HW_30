@@ -1,7 +1,4 @@
-from django.conf.urls.static import static
 from django.urls import path
-
-from HW_28 import settings
 from ad import views
 
 urlpatterns = [
