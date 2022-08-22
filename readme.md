@@ -12,3 +12,10 @@
 (используется атрибут `orderong`).
 
 Также в проекте функционирует админ-панель со всеми используемыми моделями.
+___
+Для запуска контейнера и наполнения базы необходимо в терминале набрать следующие команды:
+```
+docker-compose up -d
+./manage.py migrate
+./manage.py loaddata fixtures/ad.json fixtures/category.json fixtures/location.json fixtures/user.json
+```
