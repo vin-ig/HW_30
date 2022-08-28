@@ -7,7 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.views.generic import DetailView, UpdateView, ListView, CreateView, DeleteView
 
-from HW_28 import settings
+from HW_29 import settings
 from user.models import User, Location
 
 
