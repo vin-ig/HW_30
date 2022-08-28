@@ -24,7 +24,7 @@ class User(models.Model):
 	password = models.CharField(max_length=30)
 	role = models.CharField(max_length=20)
 	age = models.PositiveIntegerField()
-	location = models.ForeignKey(Location, on_delete=CASCADE)
+	location = models.ForeignKey(Location, on_delete=CASCADE, null=True, blank=True)
 
 	class Meta:
 		verbose_name = 'Пользователь'
