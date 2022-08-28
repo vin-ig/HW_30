@@ -21,9 +21,28 @@ class AdListView(ListAPIView):
 	serializer_class = AdSerializer
 
 	def get(self, request, *args, **kwargs):
-		cat_filter = request.GET.get('cat')
+		# Фильтр по категории
+		cat_filter = request.GET.getlist('cat')
 		if cat_filter:
 			self.queryset = self.queryset.filter(category_id__in=cat_filter)
+
+		# Поиск по тексту
+		search_text = request.GET.get('text')
+		if search_text:
+			self.queryset = self.queryset.filter(name__icontains=search_text)
+
+		# Поиск по городу
+		location = request.GET.get('location')
+		if location:
+			self.queryset = self.queryset.filter(author__location__name__icontains=location)
+
+		# Диапазон цен
+		price_from, price_to = request.GET.get('price_from', ), request.GET.get('price_to')
+		if price_from:
+			self.queryset = self.queryset.filter(price__gte=price_from)
+		if price_to:
+			self.queryset = self.queryset.filter(price__lte=price_to)
+
 		return super().get(request, *args, **kwargs)
 
 
