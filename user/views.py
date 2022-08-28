@@ -7,10 +7,12 @@ from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.views.generic import DetailView, UpdateView, ListView, CreateView, DeleteView
 from rest_framework.generics import RetrieveAPIView, ListAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView
+from rest_framework.viewsets import ModelViewSet
 
 from HW_29 import settings
 from user.models import User, Location
-from user.serializers import UserSerializer, UserCreateSerializer, UserUpdateSerializer, UserDestroySerializer
+from user.serializers import UserSerializer, UserCreateSerializer, UserUpdateSerializer, UserDestroySerializer, \
+	LocationSerializer
 
 
 class UserListView(ListAPIView):
@@ -143,3 +145,8 @@ class UserUpdateView(UpdateAPIView):
 class UserDeleteView(DestroyAPIView):
 	queryset = User.objects.all()
 	serializer_class = UserDestroySerializer
+
+
+class LocationViewSet(ModelViewSet):
+	queryset = Location.objects.all()
+	serializer_class = LocationSerializer
