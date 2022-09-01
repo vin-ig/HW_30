@@ -28,7 +28,7 @@ class User(AbstractUser):
 	]
 
 	role = models.CharField(max_length=9, choices=ROLES)
-	age = models.PositiveIntegerField()
+	age = models.PositiveIntegerField(null=True, blank=True)
 	location = models.ForeignKey(Location, on_delete=CASCADE, null=True, blank=True)
 
 	class Meta:
