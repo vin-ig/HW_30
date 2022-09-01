@@ -36,19 +36,12 @@ class UserCreateSerializer(serializers.ModelSerializer):
 		return super().is_valid(raise_exception=raise_exception)
 
 	def create(self, validated_data):
-		# user = User.objects.create(**validated_data)
-		# if self._location:
-		# 	location_obj = Location.objects.get_or_create(name=self._location)[0]
-		# 	user.location = location_obj
-		# 	user.save()
-		# return user
 		user = User.objects.create(**validated_data)
 		user.set_password(user.password)
-		user.save()
 		if self._location:
 			location_obj = Location.objects.get_or_create(name=self._location)[0]
 			user.location = location_obj
-			user.save()
+		user.save()
 		return user
 
 
@@ -70,10 +63,11 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
 	def save(self):
 		user = super().save()
+		user.set_password(user.password)
 		if self._location:
 			location_obj = Location.objects.get_or_create(name=self._location)[0]
 			user.location = location_obj
-			user.save()
+		user.save()
 		return user
 
 
