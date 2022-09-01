@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models import CASCADE
 
@@ -16,13 +17,17 @@ class Location(models.Model):
 		return self.name
 
 
-class User(models.Model):
-	id = models.AutoField(primary_key=True)
-	first_name = models.CharField(max_length=50)
-	last_name = models.CharField(max_length=50)
-	username = models.CharField(max_length=50)
-	password = models.CharField(max_length=30)
-	role = models.CharField(max_length=20)
+class User(AbstractUser):
+	MEMBER = 'member'
+	MODERATOR = 'moderator'
+	ADMIN = 'admin'
+	ROLES = [
+		(MEMBER, MEMBER),
+		(MODERATOR, MODERATOR),
+		(ADMIN, ADMIN),
+	]
+
+	role = models.CharField(max_length=9, choices=ROLES)
 	age = models.PositiveIntegerField()
 	location = models.ForeignKey(Location, on_delete=CASCADE, null=True, blank=True)
 

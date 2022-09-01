@@ -4,7 +4,7 @@ from django.urls import path, include
 from rest_framework import routers
 
 import ad.views
-from HW_29 import settings
+from HW_30 import settings
 from user.views import LocationViewSet
 
 urlpatterns = [
