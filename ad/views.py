@@ -6,8 +6,9 @@ from django.http import JsonResponse
 from django.views.generic import UpdateView
 from rest_framework.permissions import IsAuthenticated
 
-from ad.models import Ad
-from ad.serializers import AdSerializer, AdCreateSerializer, AdUpdateSerializer
+from ad.models import Ad, Selection
+from ad.serializers import AdSerializer, AdCreateSerializer, AdUpdateSerializer, SelectionListSerializer, \
+	SelectionDetailSerializer, SelectionCreateSerializer, SelectionUpdateSerializer, SelectionDestroySerializer
 from user.serializers import UserDestroySerializer
 
 
@@ -89,3 +90,28 @@ class AdImageView(UpdateView):
 			'is_published': ad.is_published,
 			'category': ad.category.name,
 		}, safe=False)
+
+
+class SelectionListView(ListAPIView):
+	queryset = Selection.objects.all()
+	serializer_class = SelectionListSerializer
+
+
+class SelectionDetailView(RetrieveAPIView):
+	queryset = Selection.objects.all()
+	serializer_class = SelectionDetailSerializer
+
+
+class SelectionCreateView(CreateAPIView):
+	queryset = Selection.objects.all()
+	serializer_class = SelectionCreateSerializer
+
+
+class SelectionUpdateView(UpdateAPIView):
+	queryset = Selection.objects.all()
+	serializer_class = SelectionUpdateSerializer
+
+
+class SelectionDestroyView(DestroyAPIView):
+	queryset = Selection.objects.all()
+	serializer_class = SelectionDestroySerializer

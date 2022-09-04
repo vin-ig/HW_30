@@ -18,13 +18,10 @@ class Location(models.Model):
 
 
 class User(AbstractUser):
-	MEMBER = 'member'
-	MODERATOR = 'moderator'
-	ADMIN = 'admin'
 	ROLES = [
-		(MEMBER, MEMBER),
-		(MODERATOR, MODERATOR),
-		(ADMIN, ADMIN),
+		('member', 'Пользователь'),
+		('moderator', 'Модератор'),
+		('admin', 'Администратор'),
 	]
 
 	role = models.CharField(max_length=9, choices=ROLES)

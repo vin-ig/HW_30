@@ -6,6 +6,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 import ad.views
 from HW_30 import settings
+from ad import views
 from user.views import LocationViewSet
 
 urlpatterns = [
@@ -14,6 +15,12 @@ urlpatterns = [
 	path('ad/', include('ad.urls')),
 	path('cat/', include('category.urls')),
 	path('user/', include('user.urls')),
+
+	path('selection/', views.SelectionListView.as_view(), name='selection_list'),
+	path('selection/<int:pk>/', views.SelectionDetailView.as_view(), name='selection_detail'),
+	path('selection/create/', views.SelectionCreateView.as_view(), name='selection_create'),
+	path('selection/<int:pk>/update/', views.SelectionUpdateView.as_view(), name='selection_update'),
+	path('selection/<int:pk>/delete/', views.SelectionDestroyView.as_view(), name='selection_delete'),
 ]
 
 if settings.DEBUG:
