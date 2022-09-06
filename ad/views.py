@@ -7,6 +7,7 @@ from django.views.generic import UpdateView
 from rest_framework.permissions import IsAuthenticated
 
 from ad.models import Ad, Selection
+from ad.permissions import SelectionActionsPermission
 from ad.serializers import AdSerializer, AdCreateSerializer, AdUpdateSerializer, SelectionListSerializer, \
 	SelectionDetailSerializer, SelectionCreateSerializer, SelectionUpdateSerializer, SelectionDestroySerializer
 from user.serializers import UserDestroySerializer
@@ -92,6 +93,8 @@ class AdImageView(UpdateView):
 		}, safe=False)
 
 
+# Подборки
+
 class SelectionListView(ListAPIView):
 	queryset = Selection.objects.all()
 	serializer_class = SelectionListSerializer
@@ -105,13 +108,16 @@ class SelectionDetailView(RetrieveAPIView):
 class SelectionCreateView(CreateAPIView):
 	queryset = Selection.objects.all()
 	serializer_class = SelectionCreateSerializer
+	permission_classes = [IsAuthenticated]
 
 
 class SelectionUpdateView(UpdateAPIView):
 	queryset = Selection.objects.all()
 	serializer_class = SelectionUpdateSerializer
+	permission_classes = [IsAuthenticated, SelectionActionsPermission]
 
 
 class SelectionDestroyView(DestroyAPIView):
 	queryset = Selection.objects.all()
 	serializer_class = SelectionDestroySerializer
+	permission_classes = [IsAuthenticated, SelectionActionsPermission]
