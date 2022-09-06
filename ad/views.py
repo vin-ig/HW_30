@@ -1,3 +1,4 @@
+from rest_framework.decorators import permission_classes, api_view
 from rest_framework.generics import RetrieveAPIView, ListAPIView, CreateAPIView, DestroyAPIView, UpdateAPIView
 from django.views import View
 from django.utils.decorators import method_decorator
@@ -7,7 +8,7 @@ from django.views.generic import UpdateView
 from rest_framework.permissions import IsAuthenticated
 
 from ad.models import Ad, Selection
-from ad.permissions import SelectionActionsPermission
+from ad.permissions import SelectionActionsPermission, AdActionsPermission
 from ad.serializers import AdSerializer, AdCreateSerializer, AdUpdateSerializer, SelectionListSerializer, \
 	SelectionDetailSerializer, SelectionCreateSerializer, SelectionUpdateSerializer, SelectionDestroySerializer
 from user.serializers import UserDestroySerializer
@@ -63,34 +64,33 @@ class AdCreateView(CreateAPIView):
 class AdUpdateView(UpdateAPIView):
 	queryset = Ad.objects.all()
 	serializer_class = AdUpdateSerializer
+	permission_classes = [IsAuthenticated, AdActionsPermission]
 
 
 class AdDeleteView(DestroyAPIView):
 	queryset = Ad.objects.all()
 	serializer_class = UserDestroySerializer
+	permission_classes = [IsAuthenticated, AdActionsPermission]
 
 
-@method_decorator(csrf_exempt, name='dispatch')
-class AdImageView(UpdateView):
-	model = Ad
-	fields = ['name', 'author', 'price', 'description', 'image', 'is_published', 'category']
+@api_view(["POST"])
+@permission_classes([IsAuthenticated, AdActionsPermission])
+def upload_image(request, pk):
+	ad = Ad.objects.get(pk=pk)
 
-	def post(self, request, *args, **kwargs):
-		ad = self.get_object()
+	ad.image = request.FILES['image']
+	ad.save()
 
-		ad.image = request.FILES['image']
-		ad.save()
-
-		return JsonResponse({
-			'id': ad.id,
-			'name': ad.name,
-			'author': ad.author.username,
-			'price': ad.price,
-			'description': ad.description,
-			'image': ad.image.url if ad.image else None,
-			'is_published': ad.is_published,
-			'category': ad.category.name,
-		}, safe=False)
+	return JsonResponse({
+		'id': ad.id,
+		'name': ad.name,
+		'author': ad.author.username,
+		'price': ad.price,
+		'description': ad.description,
+		'image': ad.image.url if ad.image else None,
+		'is_published': ad.is_published,
+		'category': ad.category.name,
+	}, safe=False)
 
 
 # Подборки
